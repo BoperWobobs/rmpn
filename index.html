@@ -1,0 +1,3043 @@
+
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>The ZipCPU by Gisselquist Technology</title>
+  <meta name="description" content="The ZipCPU blog, featuring how to discussions of FPGA and soft-core CPU design.  This site will be focused on Verilog solutions, using exclusively OpenSource IP products for FPGA design.  Particular focus areas include topics often left out of more mainstream FPGA design courses such as how to debug an FPGA design.
+">
+
+  <link rel="shortcut icon" type="image/x-icon" href="/img/GT.ico">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="https://zipcpu.com/">
+  <link rel="alternate" type="application/rss+xml" title="The ZipCPU by Gisselquist Technology" href="https://zipcpu.com/feed.xml">
+</head>
+
+
+  <body>
+
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4ZK7HKHSVW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-4ZK7HKHSVW');
+</script>
+
+    <header class="site-header">
+  <div id="banner">
+  <a href="/"><picture>
+    <img height=120 id="site-logo" src="/img/fullgqtech.png" alt="Gisselquist Technology, LLC">
+  </picture></A>
+  </div>
+
+  <div class="site-nav">
+<ul>
+
+<li>Main/Blog
+
+
+<li><a HREF="/about/">About Us</a>
+
+
+<li><a HREF="/fpga-hell.html">FPGA Hell</a>
+
+
+<li><a HREF="/tutorial/">Tutorial</a>
+<li><a HREF="/tutorial/formal.html">Formal training</a>
+
+
+<li><a HREF="/quiz/quizzes.html">Quizzes</a>
+
+
+<li><a HREF="/projects.html">Projects</a>
+
+
+<li><a HREF="/topics.html">Site Index</a>
+
+<HR>
+
+<li><a href="https://twitter.com/zipcpu"><span class="icon--twitter"><svg viewBox="0 0 400 400"><path fill="#1da1f2" d="M153.62,301.59c94.34,0,145.94-78.16,145.94-145.94,0-2.22,0-4.43-.15-6.63A104.36,104.36,0,0,0,325,122.47a102.38,102.38,0,0,1-29.46,8.07,51.47,51.47,0,0,0,22.55-28.37,102.79,102.79,0,0,1-32.57,12.45,51.34,51.34,0,0,0-87.41,46.78A145.62,145.62,0,0,1,92.4,107.81a51.33,51.33,0,0,0,15.88,68.47A50.91,50.91,0,0,1,85,169.86c0,.21,0,.43,0,.65a51.31,51.31,0,0,0,41.15,50.28,51.21,51.21,0,0,1-23.16.88,51.35,51.35,0,0,0,47.92,35.62,102.92,102.92,0,0,1-63.7,22A104.41,104.41,0,0,1,75,278.55a145.21,145.21,0,0,0,78.62,23"/></svg>
+</span><span class="username">@zipcpu</span></a>
+
+<li><a href="https://www.reddit.com/r/ZipCPU"><span class="username">Reddit</a>
+<li><a HREF="https://www.patreon.com/ZipCPU"><IMG SRC="/img/patreon_logomark_color_on_white.png" WIDTH="25"> Support</a>
+</ul>
+</div>
+
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="home">
+
+  <h1 class="page-heading">Blog Posts</h1>
+
+  <ul class="post-list">
+    
+      <li>
+        <span class="post-meta">Jun 20, 2025</span>
+
+        <h2>
+          <a class="post-link" href="/quiz/2025/06/20/quiz24.html">Quiz #24: Is there an AXI bug here?</a>
+        </h2>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">May 28, 2025</span>
+
+        <h2>
+          <a class="post-link" href="/zipcpu/2025/05/28/memtest.html">Comparing the Xilinx MIG with an open source DDR3 controller</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Today, I have the opportunity to compare an open source DDR3 controller with AMD (Xilinx)'s Memory Interface Generator (MIG) solution.  Let's look to see which one is faster/better/cheaper.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Mar 29, 2025</span>
+
+        <h2>
+          <a class="post-link" href="/zipcpu/2025/03/29/pfwrap.html">Wrap addressing</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Let's explore the purpose and function of wrap addressing.  We'll do this as we examine the operation of the ZipCPU's instruction cache.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Nov 6, 2024</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2024/11/06/not-axi.html">Your problem is not AXI</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>This is response to a student's question about not being able to get an AXI slave to work.  Sometimes the problem is simply more fundamental.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jul 6, 2024</span>
+
+        <h2>
+          <a class="post-link" href="/formal/2024/07/06/verifjourney.html">My Personal Journey in Verification</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>I've now gone from hardware-only verification, to simulation, through formal verification, to automated test suites.  This article attempts to discuss why I've used all these steps together with some of the lessons learned along the way.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jun 22, 2024</span>
+
+        <h2>
+          <a class="post-link" href="/video/2024/06/22/vidbug.html">Debugging video from across the ocean</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Two years ago, I built and verified several data display modules.  They passed simulation, and looked great on my screen.  Now, only two years later, I've finally been able to discover why the waterfall display didn't work in hardware kept on the other side of the Atlantic Ocean.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jun 13, 2024</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2024/06/13/kimos.html">Bringing up Kimos</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Hardware is hard.  Even the simplest of bugs takes time.  Let's talk about the Kimos project today, and the challenge to get the DDR3 SDRAM up and running.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Apr 1, 2024</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2024/04/01/chasing-resets.html">Chasing resets</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>A true story of a design, delivered late, due to (several) unexpected problems.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jan 20, 2024</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2024/01/20/2023-in-review.html">2023, Year in review</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Let's look back over 2023 from the standpoint of the ZipCPU blog, and Gisselquist Technology's business</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Nov 25, 2023</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2023/11/25/eth10g.html">An Overview of a 10Gb Ethernet Switch</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Our 10Gb Ethernet Switch is an open design, from the RTL to the PCB the FPGA is hosted on.  This article presents an overview of the networking handling within the router, what components form that path, and a quick introduction to how the routing works within the switch.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jul 18, 2023</span>
+
+        <h2>
+          <a class="post-link" href="/formal/2023/07/18/sdrxframe.html">SDIO RX: Bugs found w/ Formal methods</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>My SDIO controller has now been tested, successfully, via simulation with success.  It builds on hardware.  What value, therefore, is left for formally verifying it?  Let's therefore examine and count the number of bugs found while formally verifying the receive portion of this controller.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jun 28, 2023</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2023/06/28/sdiopkt.html">Using a Verilog task to simulate a packet generator for an SDIO controller</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>This article tells the story of the ongoing development of an SDIO controller, paying particular attention to how a Verilog task can be used to generate data to test one part of that controller.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">May 29, 2023</span>
+
+        <h2>
+          <a class="post-link" href="/zipcpu/2023/05/29/zipcpu-3p0.html">Introducing the ZipCPU v3.0</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>It's time to announce a new version of the ZipCPU: ZipCPU v3.0!  This article discusses the differences between this version of the ZipCPU and prior versions.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Apr 8, 2023</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2023/04/08/vpktfifo.html">What is a Virtual Packet FIFO?</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>We know what FIFOs are, but what's a virtual packet FIFO?</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Mar 13, 2023</span>
+
+        <h2>
+          <a class="post-link" href="/zipcpu/2023/03/13/swic.html">What is a SwiC?</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Central to the motivation behind the ZipCPU is the concept of a System within a Chip, or SwiC.  Let's look at what defines a SwiC, and see how that applies to the ZipCPU.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Feb 13, 2023</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2023/02/13/eccdbg.html">Debugging the Hard Stuff</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Some digital design spaces are just really hard to debug: ECC, FFTs, and cryptography are good examples of these.  Let's look at some ways faults in these types of designs can be isolated.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Dec 3, 2022</span>
+
+        <h2>
+          <a class="post-link" href="/zipcpu/2022/12/03/no-boot.html">Your soft-core CPU won't boot.  Where should you start debugging?</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Let's look into several things you can do in order to find and diagnose boot failures on a soft-core CPU.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Nov 24, 2022</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2022/11/24/thanksgiving.html">Thanksgiving!  I have much to be thankful for</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>This thanksgiving, I have much to be thankful for.  The greatest among these are my salvation, family, and business.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Nov 24, 2022</span>
+
+        <h2>
+          <a class="post-link" href="/quiz/2022/11/24/quiz23.html">Quiz #23: Can this assertion fail?</a>
+        </h2>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Nov 12, 2022</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2022/11/12/honesty.html">A first lesson in sales pitches: Honesty</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Since my spam box seems to be filled with offers to redesign my web site, I thought I might take a moment to respond to these requests.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Nov 1, 2022</span>
+
+        <h2>
+          <a class="post-link" href="/quiz/2022/11/01/quiz22.html">Quiz #22: Handling cover failures</a>
+        </h2>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Nov 1, 2022</span>
+
+        <h2>
+          <a class="post-link" href="/formal/2022/11/01/design-checkoff.html">Measuring the Steps to Design Checkoff</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Before delivering a design to a customer, it's important to have a strong confidence it will work.  Prior to that time, it's important to know how much time and work remain in the project.  In this article, I'll demonstrate a tool I've now used with great success for that purpose.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Sep 21, 2022</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2022/09/21/vlog-wait.html">Assignment delay's and Verilog's wait statement</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>I'm now spent more time than I want to admit to debugging simulation issues when using Verilog's simulation semantics.  This article is an attempt to capture the lessons I've learned along the way.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Aug 30, 2022</span>
+
+        <h2>
+          <a class="post-link" href="/zipcpu/2022/08/30/not-my-fault.html">It's not my fault!  Your code is broken.</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Getting verification right is not a simple task.  It takes patience and hard, methodical work.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Aug 24, 2022</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2022/08/24/protocol-design.html">Protocol Design for Network Debugging</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>TCP can be a challenge in an FPGA.  What shall be done when you need TCP's reliability, but can't afford the logic required?</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jul 16, 2022</span>
+
+        <h2>
+          <a class="post-link" href="/quiz/2022/07/16/quiz21.html">Quiz #21: Verifying all configurations of a design</a>
+        </h2>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jul 4, 2022</span>
+
+        <h2>
+          <a class="post-link" href="/zipcpu/2022/07/04/zipsim.html">ZipCPU Lesson: If it's not tested, it doesn't work.</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>A single test is often not sufficient to fully test a complex and highly configurable design.  Let's look a how a flexible script can help test multiple configurations of the ZipCPU.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jun 21, 2022</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2022/06/21/cornerstone.html">A Coming Economic Downturn?  or Worse?</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Every economist I read is discussing the impending disaster.  Today, let's discuss how to prepare.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">May 16, 2022</span>
+
+        <h2>
+          <a class="post-link" href="/quiz/2022/05/16/quiz20.html">Quiz #20: Using $stable in a multiclock environment</a>
+        </h2>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">May 7, 2022</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2022/05/07/learning-axi.html">Learning AXI: Where to start?</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>The AXI specification is the wrong place to start learning AXI.  Here's a list of some ZipCPU articles that'll help you get started.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Apr 29, 2022</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2022/04/29/proto-bringup.html">Bringing up a new piece of hardware -- what can go wrong?</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>This last week was the first time we fired up our SONAR system.  How do you think it went?</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Mar 14, 2022</span>
+
+        <h2>
+          <a class="post-link" href="/video/2022/03/14/axis-video.html">Rethinking Video with AXI video streams</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>My original video work has seen a revitalization with AXI Stream</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Feb 23, 2022</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2022/02/23/axis-abort.html">AXI Stream is broken</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Few AXI stream sources can truly handle backpressure.  Here I offer a solution for network packet data, via a packet ABORT signal.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jan 3, 2022</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2022/01/03/2021-in-review.html">2020 and 2021 in review</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>In honour of the new year, let's take a look back at the last two years and highlight the best posts from among them.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jan 1, 2022</span>
+
+        <h2>
+          <a class="post-link" href="/quiz/2022/01/01/quiz19.html">Quiz #19: Using disable iff in a concurrent assertion</a>
+        </h2>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Dec 30, 2021</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2021/12/30/dbgaxil.html">Creating a Simple AXI-Lite Master for the Hexbus</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>While much of my recent AXI work has focused on building bursting AXI masters, the debugging AXI-lite master makes a nice example of how simple an AXI master can be.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Nov 15, 2021</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2021/11/15/ultimate-i2c.html">Envisioning the Ultimate I2C Controller</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Just a quick thought regarding the design of what I consider will be an ultimate I2C controller</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Oct 26, 2021</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2021/10/26/clkgate.html">Clock Gating</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Can clock gating be used to improve simulation performance?  Let's take a look.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Sep 30, 2021</span>
+
+        <h2>
+          <a class="post-link" href="/zipcpu/2021/09/30/axiops.html">Upgrading the ZipCPU's memory unit from AXI4-lite to AXI4</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>AXI4 offers an opportunity for exclusive access and bursting capabilities not present in AXI4-lite.  Let's look at the changes, therefore, made to the ZipCPU's memory controller to upgrade it from AXI4-lite to AXI4.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Sep 11, 2021</span>
+
+        <h2>
+          <a class="post-link" href="/quiz/2021/09/11/quiz18.html">Quiz #18: Failures in clocked immediate assertions</a>
+        </h2>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Aug 28, 2021</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2021/08/28/axi-rules.html">AXI Handshaking Rules</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Let's look at some simple AXI handshaking rules for success, follow them up with example templates showing how to following them and then how to verify the rules are followed.  We'll also look at some broken example designs along the way to see examples of what can go wrong.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Aug 14, 2021</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2021/08/14/axiperf.html">Measuring AXI latency and throughput performance</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>It's important when using any tool to know how well it performs.  This article discusses how to measure the performance of any link in an AXI system.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Aug 5, 2021</span>
+
+        <h2>
+          <a class="post-link" href="/quiz/2021/08/05/quiz17.html">Quiz #17: Induction failures</a>
+        </h2>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jul 25, 2021</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2021/07/25/healing.html">The other half of the Gospel</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>The other half of the Gospel is healing.  Jesus healed men then.  He still heals men today.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jul 23, 2021</span>
+
+        <h2>
+          <a class="post-link" href="/zipcpu/2021/07/23/cpusim.html">CPU based simulation, first thoughts</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>When testing, something needs to drive your test--a script of some type.  This article explores the question of whether or not that script should be written in software to run on a soft-core CPU, or in Verilog/VHDL?</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jul 10, 2021</span>
+
+        <h2>
+          <a class="post-link" href="/quiz/2021/07/10/quiz16.html">Quiz #16: Immediate assertions in the presence of asynchronous resets</a>
+        </h2>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jul 3, 2021</span>
+
+        <h2>
+          <a class="post-link" href="/zipcpu/2021/07/03/slowmpy.html">Building a Better Verilog Multiply for the ZipCPU</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Low logic and soft multiplies don't often go together.  Here we discuss how to create a slow multiply in hardware, using a minimum amount of logic, for the case where no hardware accelerators are available.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jun 28, 2021</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2021/06/28/master-examples.html">Examples of AXI4 bus masters</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>At user request, here's a list of AXI4 master's I've recently built, and two of the test beds I've been using to test them.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jun 12, 2021</span>
+
+        <h2>
+          <a class="post-link" href="/quiz/2021/06/12/quiz15.html">Quiz #15: Pass-through memory</a>
+        </h2>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">May 22, 2021</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2021/05/22/vhdlaxil.html">Fixing Xilinx's Broken AXI-lite Design in VHDL</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>While I don't normally do VHDL work, I recently had the opportunity to verify Xilinx's AXI-lite demonstration design (again)--this time in VHDL.  So I thought I'd write about it, and offer some quick and easy fixes to the design along the way.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Apr 17, 2021</span>
+
+        <h2>
+          <a class="post-link" href="/zipcpu/2021/04/17/axilops.html">Building a Simple AXI-lite Memory Controller</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>When building a CPU memory controller, I like to start with the simplest memory controller that will do the task.  Here is a very basic AXI-lite memory controller for the ZipCPU.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Mar 20, 2021</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2021/03/20/xilinx-forums.html">Common AXI Themes on Xilinx's Forum</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Let's take a quick look through Xilinx's forums, to see if there are some common AXI themes among the forum help requests.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Mar 18, 2021</span>
+
+        <h2>
+          <a class="post-link" href="/zipcpu/2021/03/18/zipos.html">Whatever happened to the ZipOS?</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>The ZipOS was used early on with the ZipCPU in the S6SoC project, and then we haven't heard of it again since.  What happened to it?</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Mar 6, 2021</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2021/03/06/asic-lsns.html">Lessons learned while building an ASIC design</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>With a background in FPGA design, I was asked to try my skill in an ASIC design.  Here are some things I learned.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jan 29, 2021</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2021/01/29/hiring.html">The FPGA designer who didn't get the job</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Lots of people will claim an ability in digital logic design these days.  Finding someone with character, someone who will be easy to work with who also has that ability isn't nearly as easy.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jan 9, 2021</span>
+
+        <h2>
+          <a class="post-link" href="/formal/2021/01/09/ultimate.html">Ultimate Logic</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Logic can be used to prove that certain assertions must follow from the given assumptions.  How then shall the assumptions be validated?  What about the assumptions behind the assumptions?</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Dec 24, 2020</span>
+
+        <h2>
+          <a class="post-link" href="/quiz/2020/12/24/quiz14.html">Quiz #14: Two nearly identical frequencies</a>
+        </h2>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Dec 19, 2020</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2020/12/19/axil-register-checking.html">Formally verifying register handling</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>We've already discussed how to build a peripheral, and to verify its bus interaction.  Let's now look at how to verify the register contents.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Nov 26, 2020</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2020/11/26/zipcpu-biz.html">Is it possible to make a living as a solo digital design engineer?</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>For Thanksgiving this year, let me share a bit of the story about how Gisselquist Technology came to be.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Nov 21, 2020</span>
+
+        <h2>
+          <a class="post-link" href="/dsp/2020/11/21/spectrogram.html">Spectrograms need Window Functions</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Let's examine the basics of localizing signal energy in time and frequency bins, showing from first principles the need for a window function how overlap choice affects this choice of taper.  We'll then look at how to implement a window function in both C++ and Verilog.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Oct 17, 2020</span>
+
+        <h2>
+          <a class="post-link" href="/formal/2020/10/17/friday.html">A fun Friday evening--verifying an AXI-lite slave</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Can an AXI-lite slave design be formally verified, from scratch, while others look on?</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Oct 3, 2020</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2020/10/03/tfrvalue.html">Moving values and strobes cross clock domains</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Let's build a two-phase clock-domain crossing algorithm to move words from one domain to another, beating our prior four-phase method in performance and logic.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Sep 14, 2020</span>
+
+        <h2>
+          <a class="post-link" href="/quiz/2020/09/14/quiz13.html">Quiz #13: Temporal assertion equivalences</a>
+        </h2>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Aug 31, 2020</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2020/08/31/run-length-encoding.html">Run length encoding an AXI stream</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Run length encoding makes a nice complement to any logic analyzer.  Let's take a look at how to build and verify a run-length encoder in Verilog.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Aug 22, 2020</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2020/08/22/oddr.html">Driving an output on both edges of the clock</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Every now and then you need a replacement for a library element.  Today, we look at generating an ODDR output component to output logic on both edges of the clock.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jul 28, 2020</span>
+
+        <h2>
+          <a class="post-link" href="/dsp/2020/07/28/down-sampler.html">Building a Downsampling Filter</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>A digital downsampler is a combination of both a digital filter and an every Nth element selector.  It's basic.  Formally verifying it, perhaps not quite so basic.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jul 21, 2020</span>
+
+        <h2>
+          <a class="post-link" href="/formal/2020/07/21/formal-plan.html">I have a brand new piece of IP.  How shall I verify it?</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Verification doesn't begin once a design is complete.  It needs to begin long before that, ideally before the design is ever simulated in the first place</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jul 4, 2020</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2020/07/04/clkcounter.html">Measuring clock speed</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>A counter makes a very simple means of measuring clock speed.  Let's take a look at how to do that.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jun 16, 2020</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2020/06/16/axiaddr-limits.html">The hard part of building a bursting AXI Master</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Getting an AXI master to generate high throughput burst requests involves some challenging criteria which can compete with a high clock speed.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jun 12, 2020</span>
+
+        <h2>
+          <a class="post-link" href="/formal/2020/06/12/four-keys.html">Four keys to getting your design to work the first time</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>No, it's not a magical cure, just a general observation: there are four key pieces to verification that come back over and over again in designs that just work the first time</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">May 16, 2020</span>
+
+        <h2>
+          <a class="post-link" href="/quiz/2020/05/16/quiz12.html">Quiz #12: Catching extraneous acknowledgments</a>
+        </h2>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">May 16, 2020</span>
+
+        <h2>
+          <a class="post-link" href="/formal/2020/05/16/firewall.html">Building a Protocol Firewall</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>A bus fault isolator can be a very useful tool for debugging an AXI interaction within an active design.  Once the bus faults and the design locks up, further debugging is a challenge.  However, if a fault isolator can keep things from locking up and perhaps even reset the quarrelsome component following a fault, then finding the bug gets a lot easier.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Apr 20, 2020</span>
+
+        <h2>
+          <a class="post-link" href="/dsp/2020/04/20/axil2axis.html">Debugging AXI Streams</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Debugging a broken AXI stream is a common problem appearing over and over again on various forums.  In-Circuit Logic Analyzers don't do the problem justice, and often instead hide critical details of the stream protocol.  In this article, we'll look at how to build a key piece of scaffolding you might use to debug an AXI stream processor.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Apr 8, 2020</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2020/04/08/axitb.html">Adding an AXI-Lite interface to your Verilator test script</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>There are lots of ways to test AXI components, my favorite being formal methods.  Every now and again, though, you need a simulation where you can script AXI interactions.  This article explores how to do that from a C++ Verilator test bench--something that can be used to (nearly) simulate an on-board CPU.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Apr 1, 2020</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2020/04/01/design-flow.html">Re:  What does your design flow look like?</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Someone recently asked me if I had a post or something that described the tool chain I used for my own development.  This article walks through my preferred tools, and how or when I might use them.  It also contains several examples of lessons learned along the way.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Mar 23, 2020</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2020/03/23/wbm2axisp.html">Building a basic AXI Master</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>A bridge from Wisbone to AXI makes a marvelous example of how one might build an AXI master</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Mar 17, 2020</span>
+
+        <h2>
+          <a class="post-link" href="/dsp/2020/03/17/cheap-spectra.html">Cheap Spectral Estimation</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Placing an FFT inside an FPGA just to debug what may be going right or wrong with your DSP algorithm can be a costly addition.  Let's look instead at an AutoCorrelation based alternative which can get us to roughly the same result, while moving the difficult math out of the real-time flow and into a nearby processor.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Mar 14, 2020</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2020/03/14/axi-reset.html">Locally resetting an AXI component</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>It's often advantageous to bring a single component within a design back to a known reset state.  Doing this without impacting the other items within the design can be a challenge.  Here, we'll look at examples of resetting both an AXI slave and an AXI master without resetting the rest of the surrounding design.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Mar 12, 2020</span>
+
+        <h2>
+          <a class="post-link" href="/dsp/2020/03/12/quadpll.html">Adjusting our logic PLL to handle I&Q</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>By making some simple changes to the phase estimator of our logic PLL, it can be made to run in a quadrature I+Q context</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Mar 8, 2020</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2020/03/08/easyaxil.html">Buidilng an AXI-Lite slave the easy way</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>After building several AXI-Lite slave interfaces, they've become almost routine and easy to build.  In this article, we examine how easy and simple a fully functional AXI-Lite slave interface can be to build.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Feb 17, 2020</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2020/02/17/mustard-seed.html">The Faith of a Mustard Seed</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Whether or not a man has faith as a grain of mustard seed was never about the size, quantity, or amount of his faith.  If you look at what a mustard seed does, you'll realize that a mustard seed is an amazing example of what faith is in the first place.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Feb 7, 2020</span>
+
+        <h2>
+          <a class="post-link" href="/dsp/2020/02/07/bad-histogram.html">A Histogram Gone Bad</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>I took my working histogram component, and placed it into a full design.  It didn't work.  Let's take a look at what happened.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jan 23, 2020</span>
+
+        <h2>
+          <a class="post-link" href="/quiz/2020/01/23/quiz11.html">Quiz #11: Induction and clock enables</a>
+        </h2>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jan 17, 2020</span>
+
+        <h2>
+          <a class="post-link" href="/quiz/2020/01/17/quiz10.html">Quiz #10: Checking stall conditions</a>
+        </h2>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jan 13, 2020</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2020/01/13/reuse.html">Lessons in Hardware Reuse</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Hardware component reuse has been a goal of digital designers for a long time.  Let's look at some lessons learned regarding hardware reuse within a company, where reuse should be easy.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jan 1, 2020</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2020/01/01/2019-in-review.html">2019: AXI Meets Formal Verification</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>This article looks over 2019 in review from the perspective of the ZipCPU blog.  In particular, the top ZipCPU blog articles across all of 2019 are reviewed.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Dec 25, 2019</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2019/12/25/christmas-gospel.html">The Christmas Gospel</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Let's trace the origins of Christmas, from beginning to end</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Dec 21, 2019</span>
+
+        <h2>
+          <a class="post-link" href="/dsp/2019/12/21/histogram.html">Using a Histogram to Debug A/D Data Streams</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Histograms are an important part of debugging a data channel.  Let's take a look at some pictures, and then discuss how to go about implementing one</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Dec 12, 2019</span>
+
+        <h2>
+          <a class="post-link" href="/quiz/2019/12/12/quiz09.html">Quiz #9: Immediate assertions midst blocking assignments</a>
+        </h2>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Nov 29, 2019</span>
+
+        <h2>
+          <a class="post-link" href="/quiz/2019/11/29/quiz08.html">Quiz #8: Will this pass a bounded model check?</a>
+        </h2>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Nov 23, 2019</span>
+
+        <h2>
+          <a class="post-link" href="/zipcpu/2019/11/23/multithreaded-blinky.html">The ZipCPU meets blinky</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>FPGAs and CPUs blink lights in very different manners.  The difference?  CPUs have interrupts, and contexts which can be swapped.  Let's take a look and see how these might be used on a ZipCPU.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Nov 18, 2019</span>
+
+        <h2>
+          <a class="post-link" href="/formal/2019/11/18/genuctrlr.html">Formally Verifying a General Purpose Ultra-Micro Controller</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Let's look at a basic, scripted microcontroller--the simplest around.  Understanding how to formally verify something this simple offers a lot of lessons for verifying something more complex.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Nov 16, 2019</span>
+
+        <h2>
+          <a class="post-link" href="/quiz/2019/11/16/quiz07.html">Quiz #7: Returning to $past() and our counter again</a>
+        </h2>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Nov 14, 2019</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2019/11/14/sdspi.html">Putting the pieces together to build a data recorder</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>We've discussed building components before.  Today let's look at a (much too long) journey from components to completed design.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Oct 5, 2019</span>
+
+        <h2>
+          <a class="post-link" href="/formal/2019/10/05/formal-enough.html">Is formal verfication enough, or is simulation required?</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>This article captures four stories I tell of bugs found and caught, two after only using simulation and two after only using formal, in an attempt to answer whether or not I could've verified with formal alone or for that matter with simulation alone.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Sep 6, 2019</span>
+
+        <h2>
+          <a class="post-link" href="/quiz/2019/09/06/quiz06.html">Quiz #6: Synchronous logic in Asynchronous contexts</a>
+        </h2>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Sep 6, 2019</span>
+
+        <h2>
+          <a class="post-link" href="/formal/2019/09/06/axi-story.html">AXI Verification, the story so far</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>After learning how to verify AXI modules, it's now time to discuss some of the reality of what's going on in the industry.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Sep 3, 2019</span>
+
+        <h2>
+          <a class="post-link" href="/zipcpu/2019/09/03/address-assignment.html">Understanding AutoFPGA's address assignment algorithm</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Address assignment is often seen as a black box to many folk.  It need not be.  The algorithm used by AutoFPGA isn't that hard to understand or follow.  This article describes how that algorithm works.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Aug 31, 2019</span>
+
+        <h2>
+          <a class="post-link" href="/quiz/2019/08/31/quiz05.html">Quiz #5: Immediate vs Concurrent Assertions</a>
+        </h2>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Aug 30, 2019</span>
+
+        <h2>
+          <a class="post-link" href="/zipcpu/2019/08/30/subbus.html">Connecting lots of slaves to a bus without using a lot of logic</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>AutoFPGA has long supported classes of slaves using a simplified bus protocol.  Today, we'll examine what that would look like for WB, AXI-lite, and AXI.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Aug 24, 2019</span>
+
+        <h2>
+          <a class="post-link" href="/quiz/2019/08/24/quiz04.html">Quiz #4: If this counter is never triggered, can we prove it'll never leave zero?</a>
+        </h2>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Aug 22, 2019</span>
+
+        <h2>
+          <a class="post-link" href="/zipcpu/2019/08/22/tech-debt.html">Technology Debt and AutoFPGA, the bill just came due</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Knowing how the interconnect works, I've abused the Wishbone protocol several times.  Now that I'm updating AutoFPGA to handle multiple masters, making them work with the updated bus interconnect requires fixing what only appeared to be working before.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Aug 20, 2019</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2019/08/20/lego-design.html">Xilinx deleted this post</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Some hard wisdom I've learned about learning hardware design--wisdom that Xilinx deleted because it doesn't flatter them.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Aug 19, 2019</span>
+
+        <h2>
+          <a class="post-link" href="/quiz/2019/08/19/quiz03.html">Quiz #3: Will formal verification prove this counter keeps its bounds?</a>
+        </h2>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Aug 16, 2019</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2019/08/16/intermediate.html">Planning an Intermediate Design Tutorial</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>My first Verilog+Formal tutorial has been well received.  Today, I put some thoughts together about where I might take the tutorial next.  Specifically, what should the next lesson(s) be?</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Aug 8, 2019</span>
+
+        <h2>
+          <a class="post-link" href="/quiz/2019/08/08/quiz02.html">Quiz #2: Will this counter pass formal verification?</a>
+        </h2>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Aug 3, 2019</span>
+
+        <h2>
+          <a class="post-link" href="/quiz/2019/08/03/quiz01.html">Quiz #1: Will the assertion below ever fail?</a>
+        </h2>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Aug 3, 2019</span>
+
+        <h2>
+          <a class="post-link" href="/formal/2019/08/03/proof-duration.html">Just how long does a formal proof take to finish?</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Formal methods are exhaustive, so just how long does it take to prove something?  Examining a body of nearly 900 proofs, it's not that long.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jul 17, 2019</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2019/07/17/crossbar.html">Lessons learned while building crossbar interconnects</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Connecting N bus masters to M bus slaves is the task of an interconnect.  While many approaches exist, one of the most common FPGA approaches is a crossbar interconnect.  This article examines some common features among several crossbar interconnects I've recently built.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jun 28, 2019</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2019/06/28/genclk.html">Breaking all the rules to create an arbitrary clock signal</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Never generate a clock signal using logic!  Why not?  Let's break this rule today in order to create an arbitrary clock generator and see how things work out for us.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">May 29, 2019</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2019/05/29/demoaxi.html">Building the perfect AXI4 slave</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Xilinx provides example code which can be used to build an AXI slave from.  As we've already seen, this code is broken to the extent that it can be made to violate the AXI protocol.  Worse, even when it does work the demo core does not perform well.  Here's an example of how to do better.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">May 22, 2019</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2019/05/22/skidbuffer.html">Building a Skid Buffer for AXI processing</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Skid buffers provide an elastic support between pipeline stages, relieving the pressure from combinatorial logic which would otherwise accumulate from one stage to the next.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">May 13, 2019</span>
+
+        <h2>
+          <a class="post-link" href="/formal/2019/05/13/axifull.html">Examining Xilinx's AXI demonstration core</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Vivado has a wonderful capability, whereby it can create a AXI4 IP core for you to build a design off of.  Sadly, the core generated by Vivado 2018.3 doesn't pass formal verification.  Let's look at some of the problems with it today.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Apr 27, 2019</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2019/04/27/axi-addr.html">Understanding AXI Addressing</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>An AXI4 component must three different addressing modes, 8 different sub-word sizes, four different wrapping lengths, and both aligned and to-be-aligned addressing.  It's not trivial.  This article takes a look at how you can compute the next address in an AXI burst.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Apr 24, 2019</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2019/04/24/pl-pmodamp2.html">Project Ideas: PMod AMP2</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Do you have a PMod AMP2?  Are you wondering what to do with it?  Here are some ideas</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Apr 18, 2019</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2019/04/18/formal-resurrection.html">Applying Formal Methods to the Events of the Resurrection</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>When was the last supper?  When was the crucifixion?  Friday?  How about the sabbath?  Let's apply formal methods to discover these events</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Apr 16, 2019</span>
+
+        <h2>
+          <a class="post-link" href="/formal/2019/04/16/axi-mistakes.html">The most common AXI mistake</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>After formally verifying several AXI-lite slaves, one bug stands head and shoulders above the rest as the most common bug</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Apr 2, 2019</span>
+
+        <h2>
+          <a class="post-link" href="/zipcpu/2019/04/02/icontrol.html">The ZipCPU's Interrupt Controller</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>The ZipCPU has only a single interrupt line.  For many microprocessor applications, this is way too few.  Therefore, let's discuss how to build a simple interrupt control peripheral that can then give the ZipCPU access to more than just the one interrupt</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Mar 28, 2019</span>
+
+        <h2>
+          <a class="post-link" href="/zipcpu/2019/03/28/return-decoding.html">Logic usage and decoding return results with cascaded multiplexers</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>How your CPU or bus aggregates return values from its components, can have an affect on your logic usage</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Mar 27, 2019</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2019/03/27/qflexpress.html">Building a universal QSPI flash controller</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>In this article, I'll discuss how to build a QSPI flash controller in Verilog, and then make sure it works under all configurations.  As always, formally verified example code is provided.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Mar 12, 2019</span>
+
+        <h2>
+          <a class="post-link" href="/zipcpu/2019/03/12/arrowzip.html">Introducing the ArrowZip ZipCPU design, featuring the Max-1000</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>The Max-1000 is a very small and cheap FPGA development board from Trenz, and sold by Arrow in the US for only $30.  Today, let's take a an example design that runs the ZipCPU on this board.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Feb 21, 2019</span>
+
+        <h2>
+          <a class="post-link" href="/formal/2019/02/21/txuart.html">Using Sequence Properties to Verify a Serial Port Transmitter</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Formally Verifying a serial port makes a great example of both the good and bad about SystemVerilog sequences, and how you can still work around the bad with SymbiYosys</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Feb 9, 2019</span>
+
+        <h2>
+          <a class="post-link" href="/zipcpu/2019/02/09/cpu-blinky.html">Why does blinky make a CPU appear to be so slow?</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>If your CPU runs at 100MHz, what speed would you expect it to be able to blink an I/O pin at?  Let's take a look.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Feb 4, 2019</span>
+
+        <h2>
+          <a class="post-link" href="/zipcpu/2019/02/04/debugging-that-cpu.html">Debugging a CPU</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>This is the story of finding and fixing a bug in the ZipCPU.  As with most bugs, the bug I found wasn't where I expected it.  Along the way, though, we'll go over several tools you can use to accomplish such a task--should you ever find you need to do so yourself.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jan 12, 2019</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2019/01/12/demoaxilite.html">Building a custom yet functional AXI-lite slave</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Some time ago, I wrote on this blog about how to verify an AXI-lite slave, showing along the way how Xilinx's demonstration slave wouldn't pass a verification test.  Instead of illustrating the problem again, let's take a moment to examine how to build an AXI-lite slave that will not only work, but have twice the throughput.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jan 1, 2019</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2019/01/01/top-ten.html">ZipCPU highlights from 2018</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>A quick summary of the highlights of the ZipCPU blog over 2018, to include a list of the most read articles</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Dec 28, 2018</span>
+
+        <h2>
+          <a class="post-link" href="/formal/2018/12/28/axilite.html">Using a formal property file to verify an AXI-lite peripheral</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>A file of formal properties defining an interface is worth gold: you can get a strong guarantee that your code will conform to the interface if it passes a formal verification step using the interface.  Even better, one such file, used across an enterprise, can guarantee that all of the cores within the enterprise are interface compatible.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Dec 22, 2018</span>
+
+        <h2>
+          <a class="post-link" href="/zipcpu/2018/12/22/autofpga-ld.html">AutoFPGA's linker script support gets an update</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>AutoFPGA is a very powerful scripting tool for composing ad-hoc System on a Chip (SoC) designs.  Today it gets an update for handling linker scripts.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Dec 20, 2018</span>
+
+        <h2>
+          <a class="post-link" href="/zipcpu/2018/12/20/sby-makefile.html">Makefiles for formal proofs with SymbiYosys</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Building a make script to verify multiple configuration options using SymbiYosys can be done very easily.  Let's take a quick look and see how that might be done.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Dec 18, 2018</span>
+
+        <h2>
+          <a class="post-link" href="/formal/2018/12/18/skynet.html">Swapping assumptions and assertions doesn't work</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Some time ago, I blogged about how to go about aggregating subcomponents together into a larger design.  While I've used the technique often with great success, this article shares a counter example that renders the approach invalid.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Nov 29, 2018</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2018/11/29/llvga.html">Building a video controller: it's just a pair of counters</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Building a video display can be a fun beginners exercise: at its fundamental core, it just consists of a pair of counters.  This article will examine the lower level component of a video display controller for a VGA display.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Nov 3, 2018</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2018/11/03/soc-fpga.html">Accessing the registers of a SoC+FPGA</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Accessing the memory mapped registers connected to a CPU-attached FPGA is usually easy to do.  However, if you are doing this from within a Linux system, across a virtual memory interface, then there are a couple more steps involved.  The result is still fairly simple.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Oct 5, 2018</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2018/10/05/tinyfpga.html">Taking a look at the TinyFPGA BX</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>The TinyFPGA BX offers a new approach to the classic FPGA loading problem.  Let's take a look at this board and see what it offers.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Oct 4, 2018</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2018/10/04/welcome.html">To my new readers and my new twitter followers, welcome!</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>I've recently acquired several new twitter and blog feed followers.  Today, I'd like to take a moment to welcome them, and let them know what they can expect from the ZipCPU blog.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Oct 2, 2018</span>
+
+        <h2>
+          <a class="post-link" href="/dsp/2018/10/02/fft.html">An Open Source Pipelined FFT Generator</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Not having an open source FFT implementation can make simulating DSP algorithms with an open source simulator such as Verilator nearly impossible.  Now there's a highly configurable open source alternative.  Better yet, this alternative has been formally verified.  We'll discuss that FFT, and how the formal verification was accomplished, here.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Sep 18, 2018</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2018/09/18/orconf-2018.html">It's time for ORCONF 2018!</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>ORCONF 2018 will be held this weekend in Gdansk, Poland.  I look forward to meeting many of you there.  Here's the abstract of what I intend to present this year.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Sep 8, 2018</span>
+
+        <h2>
+          <a class="post-link" href="/formal/2018/09/08/hw-failure.html">My design works in simulation, but not in hardware.  Can formal methods help me?</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Formal methods are traditionally viewed as a design tool to be used before implementation.  Today, let's take a peek at a recent example where formal methods were able to help me after implementation.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Sep 6, 2018</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2018/09/06/tbclock.html">Handling multiple clocks with Verilator</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>If you look through the Verilator on-line documentation, you'll notice that all of the examples use a single clock only.  Verilator is more capable than that, so let's try to fill in that gap today.  This article takes a quick look at how you might handle multiple clocks within Verilator.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Aug 22, 2018</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2018/08/22/what-is-simulation.html">RE: Building a simulation for my design?  What does that mean?</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>A student recently asked me what I meant by simulating a design.  To answer his question and encourage others, let's spend a moment and look at some examples of what you can do with simulation.  I'll also offer several links to other blog posts showing you how to do many of these things.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Aug 16, 2018</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2018/08/16/spiflash.html">How to build a SPI Flash Controller for an FPGA</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>I've now written several (Q/D)SPI flash drivers, and just recently had the opportunity to build another.  Here I present the design decisions, the design, and even the formal verification of this new core.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Aug 4, 2018</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2018/08/04/sim-mismatch.html">Reasons why Synthesis might not match Simulation</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>I now recommend simulation to anyone doing HDL design.  It's can even be faster to run and debug a simulation then actual hardware.  However, there are plenty of times when simulation doesn't match reality.  Let's enumerate some of the reasons why simulation might not match hardware performance.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jul 21, 2018</span>
+
+        <h2>
+          <a class="post-link" href="/formal/2018/07/21/zipcpu-icoboard.html">Why I like Formal: the ZipCPU and the ICO board</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Recently, I had to move logic from one clock to another in order to fit the ZipCPU onto the ICO board.  Having a set of formal properties for the ZipCPU, properties that covered this change, gave me a strong confidence when making the change that the result would still work.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jul 14, 2018</span>
+
+        <h2>
+          <a class="post-link" href="/formal/2018/07/14/dev-cycle.html">What does Formal Development look like in Practice?</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>I just built a basic, simple SPI controller last night, using formal tools along the way.  Care to read what the development was like?</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jul 13, 2018</span>
+
+        <h2>
+          <a class="post-link" href="/zipcpu/2018/07/13/memories.html">Formally Verifying Memory and Cache Components</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>There's a necessary but basic trick necessary when formally verifying something that acts like or interacts with memory, and it's not all that hard to do.  In this article, I'll present that basic trick and show how to formally verify a block RAM device.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jul 6, 2018</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2018/07/06/afifo.html">Crossing clock domains with an Asynchronous FIFO</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>A two or three clock synchronizer works great for passing small amounts of information across clock domains.  If you need to pass more information, such as a full data stream, you will need an asynchronous FIFO.  This article examines the Asynchronous FIFO designed by Cliff Cummings, applying formal methods to it to see if it truly maintains the properties he discusses.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">May 31, 2018</span>
+
+        <h2>
+          <a class="post-link" href="/formal/2018/05/31/clkswitch.html">Formally Verifying Asynchronous Components</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>There's a very small bit of trickery required to formally verify an asynchronous design using yosys.  Once you know the trick, it becomes easy to set up the properties necessary to formally verify any asynchronous design.  In this article, we'll demonstrate this principle by formally verifying a clock switch.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">May 17, 2018</span>
+
+        <h2>
+          <a class="post-link" href="/dsp/2018/05/17/slowsymf.html">A Slow but Symmetric FIR Filter Implementation</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>The cost of an FIR filter is usually measured by the number of multiplies required to calculate an output.  If you want to implement a better filter, you only need to be able to afford more multiplies.  However, if the filter is symmetric, and most FIR filters are, then a little cleverness will allow you to implement the same filter with half as many multiplies.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Apr 30, 2018</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2018/04/30/updated-projects.html">Updated Projects List</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Just a quick note to let everyone know I updated my projects page.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Apr 23, 2018</span>
+
+        <h2>
+          <a class="post-link" href="/formal/2018/04/23/invariant.html">Aggregating verified modules together</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Aggregating multiple modules together to formally verify a larger whole can be a very difficult challenge.  While I am by no means the expert on this topic, I can at least share some lessons I've learned myself.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Apr 17, 2018</span>
+
+        <h2>
+          <a class="post-link" href="/zipcpu/2018/04/17/ziptimer.html">ZipTimer: A simple countdown timer</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>When learning Formal Verification, it helps to start with the simplest designs possible.  The ZipTimer is just about that simple: it is nothing more than a programmable countdown timer.  More than that, though, it's a usable and critical component of the ZipSystem.  Today, let's examine that timer and then formally verify it.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Apr 12, 2018</span>
+
+        <h2>
+          <a class="post-link" href="/formal/2018/04/12/areset.html">Formally Verifying an Asynchronous Reset</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>It's one thing to synchronize reset logic within your code, its another to formally prove that your reset synchronizing logic works.  This article takes a look at an example reset synchronizer, and then applies SymbiYosys to formally verifying that it works.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Apr 5, 2018</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2018/04/05/topatreon.html">What would you like to see on the ZipCPU blog?</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>It seems there are more topics to post about then there is time to post or to read them.  Hence, it's time to ask my Patreon sponsors what topics they'd be interested in reading about next, and thus where my focus should be for the next couple of months.  If you are not a blog sponsor, please consider yourself invited to become one!</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Apr 2, 2018</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2018/04/02/formal-cpu-bugs.html">Will formal methods ever find a bug in a working CPU?</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>I've now turned my attention to formally Verifying the ZipCPU.  Having used the ZipCPU for several years, do you think I'll find any errors within i?</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Apr 1, 2018</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2018/04/01/resurrection-day.html">Resurrection Day!</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Today is the day Christianity celebrates the resurrection of Jesus Christ.  Please join me in reflecting on what makes Jesus different.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Mar 30, 2018</span>
+
+        <h2>
+          <a class="post-link" href="/dsp/2018/03/30/quadratic.html">Quadratic fits are entirely inappropriate for DSP</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>If you ever need to estimate a signal's value between samples points, don't use a quadratic fit.  There are much better techniques out there which don't suffer from the discontinuities and high frequency distortions associated with a simple quadratic fit.  Want to see an example?</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Mar 21, 2018</span>
+
+        <h2>
+          <a class="post-link" href="/zipcpu/2018/03/21/dblfetch.html">Pipelining a Prefetch</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>We've already discussed the simplest of the ZipCPU's several prefetch modules.  Today's discussion focuses on another module that's nearly as simple, but yet can achieve much better performance.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Mar 14, 2018</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2018/03/14/is-formal-hard.html">Is formal really all that hard?</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>There seems to be a myth that formal verification is very difficult, and that it is only used by the smartest digital designers.  Let me take a moment in this article to dispel that myth: If you are smart enough to do digital design, then you will appreciate the benefits of formal verification</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Mar 10, 2018</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2018/03/10/induction-exercise.html">An Exercise in using Formal Induction</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Passing N steps of a formal bounded model check isn't nearly as hard as proving a design works for all steps.  This post explores some of the differences, and offers some explanations for those new to formal methods.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Feb 12, 2018</span>
+
+        <h2>
+          <a class="post-link" href="/zipcpu/2018/02/12/zbasic-intro.html">Want to use ZBasic?  Let's have some fun--no actual FPGA required!</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>The ZBasic distribution is a very basic ZipCPU distribution that has full Verilator support for all of its peripherals: flash, serial port, and an (optional) SD-card.  Want to play a game?</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Feb 9, 2018</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2018/02/09/first-cyclonev.html">Debugging a Cyclone-V</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>I just delivered my first design using the Cyclone-V.  It was a new experience for me, and I'd like to share some lessons learned in debugging.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jan 31, 2018</span>
+
+        <h2>
+          <a class="post-link" href="/zipcpu/2018/01/31/cpu-build.html">ZipCPU toolchain and initial test</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>This article discusses how to clone the ZipCPU repository from github, and then build the compiler and toolchain.  The toolchain is then proven using the basic simulation test program that comes with the ZipCPU repository.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jan 22, 2018</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2018/01/22/formal-progress.html">Updating ZipCPU files</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>I'll admit, I've enjoyed formal methods so much I've started formally verifying much of the ZipCPU repository.  Here's a quick status update of what's been accomplished.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jan 16, 2018</span>
+
+        <h2>
+          <a class="post-link" href="/dsp/2018/01/16/interpolation-is-convolution.html">Interpolation is just a special type of convolution</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>One of the more profound DSP lessons I ever learned was that most practical interpolators can be understood as convolutions.  This is important because it means that interpolation function have frequency responses, and that their performance can be understood by examining this response.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jan 1, 2018</span>
+
+        <h2>
+          <a class="post-link" href="/zipcpu/2018/01/01/zipcpu-isa.html">A Quick Introduction to the ZipCPU Instruction Set</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>If you've ever wanted to examine a minimalist, yet still powerful, CPU's instruction set, then you might wish to take a peek at the ZipCPU's ISA.  If you've ever wanted to program the ZipCPU in assembly, or evaluate or understand an assembly representation of a ZipCPU program, then read along and see the basics of the ZipCPU instruction set.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jan 1, 2018</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2018/01/01/top-ten.html">Top 10 ZipCPU blog posts for 2017</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>In the spirit of all good New Year's blog posts, here's a quick list of the top ten blog posts on ZipCPU.com from this last year.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Dec 30, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/dsp/2017/12/30/slowfil.html">A better filter implementation for slower signals</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>All of the filter implementations we've presented so far are high speed implementations--appropriate for signals at or close to the system clock rate.  These implementations, however, end up being very resource expensive when all you want to do is to filter a much slower signal--such as an audio signal.  This post, therefore, presents an alternative that is more resource efficient for audio signals.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Dec 28, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/zipcpu/2017/12/28/ugliest-bug.html">Mystery post: The ugliest bug I've ever encountered</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>For someone who has been debugging software for many years, this bug caught me by surprise.  I'd never seen anything like it, and had no idea where to look to find the problem.  Care to see if you can guess what it was?  (Solution at the end.)</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Dec 16, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2017/12/16/max1k.html">Arrow's Max-1000: A gem for all the wrong reasons</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>I recently purchased a MAX-1000 development board from Arrow.  It's a nice, small, FPGA development board for anyone interested low price.  In the process, however, I discovered some amazing things about the FTDI FT2232H chip on board.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Dec 14, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/dsp/2017/12/14/logic-pll.html">Building a Simple Logic PLL</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Phase-Locked Loops are components designed to lock an oscillator to the phase and frequency of an incoming oscillator.  In this article, we'll present a very basic PLL algorithm that can, at high speed and within an FPGA, lock onto the phase of an incoming logic signal.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Dec 9, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/dsp/2017/12/09/nco.html">Building a Numerically Controlled Oscillator</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>A Numerically Controlled Oscillator (NCO) plus a Digital to Analog (D/A) converter creates a Direct Digital Synthesizer (DDS)--something that can create a tone of any user-controlled frequency.  Let's skip the D/A today, and discuss how to drive a sine wave generator to create that known frequency.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Dec 6, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/dsp/2017/12/06/fastfir-tb.html">Testing the fast, generic FIR filter</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>The last filter we presented was a high speed, generic, reconfigurable, FIR filter that can be used for many purposes.  Since then, we've been working our way towards a framework for testing that filter.  Today, let's build that test bench from the framework we've developed and see how well our filter actually works.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Nov 23, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2017/11/23/thankyou.html">Thank you!</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>O give thanks unto the LORD; for He is good!</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Nov 22, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/dsp/2017/11/22/fltr-response.html">Measuring the frequency response of a filter under test</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Our generic filtering harness development stopped short of measuring the frequency response of a test filter.  Here, we pick back up the discussion and work through how you might measure the frequency response of a filter under test using Verilator.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Nov 18, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/zipcpu/2017/11/18/wb-prefetch.html">Building a prefetch module for the ZipCPU</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>The pre-fetch module is one of the fundamental components of any CPU.  It is responsible for fetching instructions from memory.  The ZipCPU prefetch is also an example of a Wishbone master, something worth looking at again in and of itself.  This post adds a twist, though, to those two topics in that we'll also formally prove that this prefetch algorithm properly accesses the Wishbone bus.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Nov 13, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/dsp/2017/11/13/lfsr-multi.html">Generating more than one bit at a time with an LFSR</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>The typical LFSR development ends with logic that can create one bit per clock.  What happens when you need many bits per clock, not just one?  So let's continue our discussion of LFSRs and investigate how to calculate many LFSR bits per clock.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Nov 11, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/dsp/2017/11/11/lfsr-example.html">An example LFSR</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>To many people, LFSRs magically produce random numbers.  They are a confusing unknown.  So let's look at an example 5-bit LFSR, and see what happens when we step through its logic.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Nov 10, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/dsp/2017/11/10/delayw.html">A Configurable Signal Delay Element</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Many DSP applications have a need to delay a signal against itself by some period of time.  Such delays are fundamental.  They are also fairly easy to build.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Nov 7, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/zipcpu/2017/11/07/wb-formal.html">Building Formal Assumptions to Describe Wishbone Behaviour</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>The most critical component of any bus based system, such as a System on a Chip (SoC), is the bus interface.  One failure of this interface can easily lock up the entire system.  This post examines the Wishbone bus interface, and presents some formal properties that can be used to verify that a Wishbone master works.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Nov 4, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/dsp/2017/11/04/genfil-tb.html">The Interface to a Generic Filtering Testbench</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>As we work our way through discussing digital filtering, and presenting multiple digital filters, we're going to need to test these filters.  This article outlines, from the bottom up, a test harness that can be used to aid testing whether or not a digital filter produces the response one would desire.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Oct 30, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2017/10/30/student-sw-engr.html">Good Software Engineering Principles Apply to Students Too</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Just because you'll be turning in a one-time project for your class, doesn't mean you can ignore good software engineering principles.  Those same principles might be the difference between getting your project working or not.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Oct 27, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/dsp/2017/10/27/lfsr.html">Generating Pseudo-Random Numbers on an FPGA</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>At some point or other, when working with FPGAs, you will need a pseudorandom number sequence.  Linear Feedback Shift Registers are commonly used for this purpose.  Here, we discuss such registers and how to create them within Verilog.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Oct 20, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2017/10/20/cdc.html">Some Simple Clock-Domain Crossing Solutions</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Crossing clock domains is one of those FPGA design topics that is strictly a hardware topic.  By the time a software engineer starts his work, any CDC issues have likely been resolved.  Not so for the FPGA designer.  Let's examine several methods for crossing clock domains.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Oct 19, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2017/10/19/formal-intro.html">My first experience with Formal Methods</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>I've just started trying formal verification methods based upon yosys and yosys-smtbmc this week.  As a result, I've now found several subtle bugs within my FIFOs, things that I would never have found otherwise.  This post shares some of my initial thoughts and experiences, as well as providing a short primer to the method.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Oct 18, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2017/10/18/upcoming.html">Just some notes to new readers of the ZipCPU blog</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>If you've just started reading the ZipCPU blog, welcome!  Let's take a look at some upcoming topics.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Oct 16, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/dsp/2017/10/16/boxcar.html">Implementing the Moving Average (Boxcar) filter</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>A fully generic filter can be difficult to implement within an FPGA, since FPGAs can only support a limited number of multiplies.  One way of simplifying the problem is to use a moving average filter.  Let's examine how to build one of these filters.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Oct 13, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2017/10/13/fpga-v-asic.html">FPGAs vs ASICs</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>While I like to lump both FPGA and ASIC development into a catch-all phrase 'digital logic', there are some very real differences between the two.  Let's examine some of those differences together.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Oct 7, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2017/10/07/study-interfaces.html">It's all about the interfaces</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>If you want raw algorithmic speed, look no farther than an FPGA.  However, before you start drooling over how fast an FPGA can run a task, take a moment to think about what it will take to get your data in and out of the FPGA at the speed you want the FPGA to run.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Oct 6, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/zipcpu/2017/10/06/autofpga-dataword.html">Using AutoFPGA to connect simple registers to a debugging bus</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Let's take a look at what it takes to add a simple, single-register component to an AutpFPGA based design.  We'll look at and examine some simple peripherals, and look at how the components configuration file tells AutoFPGA how to connect the component to the rest of the design.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Oct 5, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/zipcpu/2017/10/05/autofpga-intro.html">A Brief Introduction to AutoFPGA</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Many of my readers are aware that I am working on a project I've called AutoFPGA.  AutoFPGA makes it easy to reconfigure a bus and reassign addresses when adding new components to a design.  This post presents a high level overview of how AutoFPGA may be used.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Oct 2, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/dsp/2017/10/02/cordic-tb.html">A CORDIC testbench</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Building a test bench for a CORDIC with an arbitrary number of bits, both input, output, and phase bits, is not a trivial task.  However, without knowing how good a component should be, it's hard to know whether or not the component works to its specification.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Sep 29, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/dsp/2017/09/29/cheaper-fast-fir.html">A Cheaper Fast FIR Filter</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>After I last posted on how to build a generic FIR filter, a friend showed me a cheaper implementation.  This post presents and examines that cheaper implementation.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Sep 27, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/dsp/2017/09/27/quantization.html">Understanding the effects of Quantization</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>If you are building DSP algorithms within FPGAs or other digital logic, it's important to know how your logic will handle finite bit arithmetic.  This post just goes over some of the basic effects of quantization: what it is, and some simple means of modeling it to determine how it will affect your algorithm.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Sep 18, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2017/09/18/clocks-for-sw-engineers.html">Clocks for Software Engineers</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>If you have a software background, and you want to pick up digital design, then one of the first things you need to learn about is the clock.  To many software engineers, the concept of a clock is an annoyance.  Without using a clock, they can turn HDL into a programming language.  Yet the clock they are ignoring is often the most fundamental part of digital design.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Sep 16, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/dsp/2017/09/16/pwm-demo.html">Demonstrating the improved PWM waveform</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Having posted on an improved form of Pulse Width Modulation, I've been asked to provide a demonstration of this capability illustrating that this technique actually works.  So today we'll discuss the technique again and present performance measures showing how well this method of signal generation outshines its traditional PWM counterpart.  Sample code is provided, so you can test it for yourself.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Sep 15, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/dsp/2017/09/15/fastfir.html">Building a high speed Finite Impulse Response (FIR) Digital Filter</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Digital Filtering is one of the most fundamental DSP operations.  Further, because of their speed, FPGAs can filter things that nothing else can.  This post will develop a simple, extensable, generic high speed re-programmable digital filter.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Sep 14, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2017/09/14/even-i-get-stuck.html">Even I get stuck in FPGA Hell</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Yes, even I get stuck in FPGA Hell from time to time.  Here's a quick discussion of three problems where I got stuck recently: HDMI input, getting the debugging bus up and running, and an arbitrary clock rate generator.  In each case, I present not only how I was stuck, but also how I got unstuck.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Sep 12, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2017/09/12/orconf-2017-return-home.html">Glad I went to ORCONF</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>My thanks go out to the ORCONF team for making this years conference a success!</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Sep 6, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2017/09/06/orconf-2017.html">Off to ORCONF-2017!</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>This week, I'm off to ORCONF-2017 in Hebden Bridge, England.  I'll be giving a presentation on AutoFPGA, and a quick update on the ZipCPU development.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Sep 4, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/dsp/2017/09/04/pwm-reinvention.html">Reinventing PWM</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>A PWM output can often be used as a poor man's low-frequency digital to analog converter.  Such outputs are so easy to create, that they often make sample problems for beginners.  Here, we'll not only show an example of the beginners solution, but we'll also create a simple no-cost improvement that can be applied for audio signals.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Sep 2, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2017/09/02/big-money-integrity.html">Big Money Engineering Integrity</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>This article is a true story of what happens when engineering integrity is lost at the big money government level.  The result wasn't pretty.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Sep 1, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/dsp/2017/09/01/topolar.html">CORDIC part two: rectangular to polar conversion</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>The CORDIC algorithm we discussed can be used in more than one fashion.  We've now discussed how to use it to calculate sine and cosine functions.  Today, let turn the algorithm around and use the same method to generate polar coordinates from rectangular inputs--essentially the reverss of the last operation.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Aug 30, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/dsp/2017/08/30/cordic.html">Using a CORDIC to calculate sines and cosines in an FPGA</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Having presented several simple means of calculating a sinewaves within an FPGA, we turn to a more powerful method today: the Coordinate Rotation Digital Computer, or CORDIC.  Although this method has a higher latency than the two table based lookup methods, it also has the capability for much greater precision than either table method can provide.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Aug 26, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/dsp/2017/08/26/quarterwave.html">Building a quarter sine-wave lookup table</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Since we've already discussed how to build a simple sine wave lookup table, as well as several general strategies for controlling pipeline logic, let's take a look at creating a sine wave from a quarter wave table.  We'll also use this as an opportunity to discuss how to create pipelined logic in general.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Aug 25, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/zipcpu/2017/08/25/hw-debugging.html">Debugging your soft-core CPU within an FPGA</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>We've already looked at the requirements for debugging a CPU in general, as well as how to debug a CPU in simulation.  Let's now take a look at how to modify your soft-core CPU so that you can debug it when it is on an FPGA.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Aug 23, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/zipcpu/2017/08/23/cpu-pipeline.html">The ZipCPU's pipeline logic</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Having discussed several strategies for pipelining in general, we turn our attention to the strategy used for handling pipelining within the ZipCPU.  Hence, we present the pipelining logic used by the ZipCPU, as well as the variable names you can search on in case you want to see in detail how a CPU can handle its pipeline logic.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Aug 21, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2017/08/21/rules-for-newbies.html">Rules for new FPGA designers</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>This year many students will try to take up digital design.  Some of these students will enjoy their experience, many will not.  Here are some tips to help keep you out of trouble, so your experience will be one of the more enjoyable ones.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Aug 19, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/dsp/2017/08/19/simple-filter.html">Two of the Simplest Digital filters</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>The simplest digital FIR filter out there is a simple adjacent sample averager.  Here we present not only that filter, but also discuss how any Digital filter may be tested and proven.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Aug 14, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2017/08/14/strategies-for-pipelining.html">Strategies for pipelining logic</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Pipelining logic is one of the most basic digital logic concepts.  Many processing algorithms can naturally be pipelined--reducing logic and speeding up algorithm completion.  However, most pipelines require some form of handshake signals.  This post, therefore, discusses those handshaking signals, presenting several options that can be used depending upon the circumstances.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Aug 12, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2017/08/12/caused-to-lie.html">What would cause you to lie?</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Engineering integrity should not need to be discussed on any engineering forum.  The honesty of every engineer should be assumed.  That this is not the case, and that this needs to be discussed is unfortunate.  It is, however reality.  So, let's ask, what would it take for you to compromise your integrity?</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Aug 11, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/zipcpu/2017/08/11/simple-alu.html">A Simple ALU, drawn from the ZipCPU</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>When it comes to building a CPU, an ALU may be the simplest part.  This discussion examines how simple an ALU can be made to be, by examining the ALU within the ZipCPU.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Aug 9, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2017/08/09/series-debouncing.html">Series: Debouncing in Digital Logic</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>This completes our series on button bouncing, and the logic necessary to both measure and to eliminate button bouncing.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Aug 7, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2017/08/07/bounce-dbgbus.html">Using a debug-bus to Measure Bouncing</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>While many other FPGA web sites discuss contact bounce and how to get rid of it, let's take a different approach here.  Let's combine our debouncer with our measurement code, connect it to our debugging bus, a get a trace from within the FPGA indicating what was taking place.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Aug 5, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2017/08/05/bounce-metric.html">Measuring Contact Bounce</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Now that we know that buttons don't behave like we would like, what would it take to measure that behavior?  Let's measure not only the number of times a button changes, but also how long it takes from the initial change to the final change.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Aug 4, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2017/08/04/debouncing.html">How to eliminate button bounces with digital logic</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Unilke LEDs, pushbuttons have a series of problems associated with them that make them difficult to use as part of debugging a design.  They can be useful, but only after your debouncing logic has first been proven</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Aug 2, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2017/08/02/debounce-teaser.html">Visualizing Contact Bounce</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Buttons when pressed often report more than one contact, or even more than one release.  This post presents the result of measuring several such bounces.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Aug 1, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2017/08/01/advertising.html">ZipCPU Advertising</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Disqus support has been removed, since their advertising was not consistent with my strong Christian scruples.  The ZipCPU blog is not, nor has it ever been, supported by advertising.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jul 31, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2017/07/31/vcd.html">Writing your own VCD File</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>If you ever decide you want to create your own scope, but not your own viewer, than knowing how to write a Value-Change Dump (VCD) file may be required.  Here, we'll go over the basics of how to write such a file, as well as discuss the meanings of the most common parts of one.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jul 29, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/dsp/2017/07/29/series-linear-interpolation.html">Linear Interpolation</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>An Overview of the Linear Interpolation Series</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jul 29, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2017/07/29/fifo.html">Getting the basic FIFO right</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>A FIFO is a very basic component of any digital logic system.  Getting the components and the timing right, though, can be a careful chore.  Here, let's examine how to build a basic FIFO.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jul 28, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2017/07/28/cygwin-fpga.html">Windows FPGA designers may not need a Linux machine ... yet</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Many of the programs I use for FPGA design and debugging, such as verilator or GTKWave, run just fine under Windows when using Cygwin.  Here's how to set up some Linux FPGA tools under Windows.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jul 26, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/zipcpu/2017/07/26/cpu-sim-debugger.html">How to build a simulation based debugger for your own soft-core CPU</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>While Verilator makes for a great simulator, gtkwave isn't the most intuitive way to debug a CPU.  Rather than staring at incomprehensible wires, give your simulator the feel of a proper debugger using these techniques</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jul 24, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/dsp/2017/07/24/dsp-debugging.html">How to Debug a DSP algorithm</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>DSP algorithms are not like other algorithms when it comes to debugging.  printf() and gtkwave just don't work as well.  Let's look into an alternative.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jul 22, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/dsp/2017/07/22/rounding.html">Rounding Numbers without Adding a Bias</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>If every operation adds to the number of bits required to represent the result, how do you get rid of bits?  It's not nearly as simple as it sounds, since most of the methods for getting rid of bits bias the result one way or another.  Here we'll examine a couple rounding methods, and discuss their problems, and also describe a solution.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jul 21, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/dsp/2017/07/21/bit-growth.html">Bit growth in FPGA arithmetic</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Integer arithmetic from a small domain, creates larger and larger numbers.  Here, we'll quantify that effect.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jul 19, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/dsp/2017/07/19/linear-upsampling.html">A Basic Upsampling Linear Interpolator</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>This blog article is the second in a series on rate conversion within DSP's.  Specifically, we'll look at how to upsample an incoming signal from whatever rate it was given to you at, on up to any rate at or less than your FPGA's clock rate.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jul 17, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2017/07/17/debugging-dbgbus.html">Verilator doesn't find everything (today)</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>After posting the debugging bus stories, I was embarrassed to implement it on my own FPGA and not get immediate and perfect success.  Verilator just doesn't find everything (today).</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jul 14, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/zipcpu/2017/07/14/cpu-debugging-needs.html">Design Needs when Debugging a SoftCore CPU</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>There's more to designing a CPU than picking the instructions that the CPU must support.  This blog post discusses the debugging facilities you are likely to want while you work to bring your design to fruition.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jul 11, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/dsp/2017/07/11/simplest-sinewave-generator.html">The simplest sine wave generator within an FPGA</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>If you find yourself needing a sine wave within an FPGA, here's the simplest method(s) I know of creating one.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jul 8, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2017/07/08/getting-started-with-wbscope.html">Getting Started with the Wishbone Scope</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>This post describes how to get started with the wishbone scope in your own design.  As a fun end result, we'll draw the information necessary to create a VCD file and thus a GTKWave plot from logic within your design</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jun 29, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2017/06/29/sw-dbg-interface.html">Finishing off the debugging bus: building a software interface</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>This post completes the sequence on what it takes to build a debugging bus, by building a software controller to encode commands for and decode responses from the FPGA.  Once built and integrated into your design, the dbgbus controller should be able to help you communicate with components within your FPGA</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jun 28, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2017/06/28/dbgbus-goal.html">Why you want a debug port into your FPGA</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Just a quick picture of what you can do with the dbgbus once finished</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jun 26, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2017/06/26/dbgbus-verilator.html">Simulating an FPGA through the debugging interface</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Given the debugging interface just created, this post goes into how to go about simulating it via Verilator</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jun 23, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2017/06/23/my-dbg-philosophy.html">My own FPGA debugging philosophy</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Many individuals have read my previous posts and have wondered what my design philosophy actually is.  This post attempts to outline the general approaches I used to debugging my own FPGA designs</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jun 22, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2017/06/22/simple-wb-interconnect.html">Building a very simple wishbone interconnect</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Having now built all of the components of a UART to wishbone bridge, it's time to build a test design that would use it.  This article, therefore, discusses how to build the interconnect that will connect a single wishbone master to multiple wishbone slaves</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jun 21, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2017/06/21/looking-at-verilator.html">Taking a New Look at Verilator</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Verilator is not a simulator in the sense of any of the other commercial HDL simulators on the market, yet it has some very unique capabilities when it comes to simulating components that you won't find in other simulation tools</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jun 20, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2017/06/20/dbg-put-together.html">Putting our Debugging Bus RTL Components Together</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>We've now built all the individual components of an RTL based debugging bus.  This post discusses how to put them all together.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jun 19, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2017/06/19/debug-idles.html">Sending bus idle notifications down the line</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>One difficult part of dealing with multiple serial interfaces is knowing which one has what port on it.  We'll solve this problem on our FPGA debugging interface by adding a simple idle indication into our debugging port.  With this capability, if we watch long enough, we can tell if the port is the right port or not.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jun 17, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2017/06/17/why-network-debugging.html">Why Use a Network Interface to your FPGA</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Several of you have asked why the debug interface needs to be networked.  What does that mean?  and, is it worth the pain of a capability I don't think I need?  This article discusses what it takes to network a debugging interface, therefore, and outlines why it isn't as difficult to do as it might sound.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jun 17, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2017/06/17/patreon.html">Support me on Patreon</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>The ZipCPU blog now has Patreon support!  If you'd like to see this blog continue ...</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jun 16, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2017/06/16/dbg-bus-forest.html">The debugging bus: a goal for FPGA interaction</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>We're now halfway through describing how to build a debugging bus within an FPGA for command, control, and feedback from that FPGA.  This post takes a quick review of why we wish to do this.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jun 16, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2017/06/16/adding-ints.html">Adding interrupt reporting to our debugging bus</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Now that we have a mostly working bus, let's add interrupt reporting as a simple feature to it</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jun 15, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2017/06/15/words-back-to-bytes.html">How to send our bus results back out the serial port</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>We're close to having a working demonstration debug port to our design, but not quite there yet.  This lesson focuses on how to turn the output words from our hexadecimal bus back into characters that we can then read on the output.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jun 15, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/dsp/2017/06/15/no-pi-for-you.html">No PI for you</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Neither the units of degrees nor Radians make sense within an FPGA.  This article discusses a better unit for angles within an FPGA.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jun 14, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2017/06/14/creating-words-from-bytes.html">How to create bus command words, from a 7-bit data stream</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Continuing our series on how to make a debugging bus, this article discusses how you can create bus command words from a stream of printable bytes.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jun 12, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2017/06/12/minimizing-luts.html">Minimizing FPGA Resource Utilization</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>At some time, every project will come face to face with the fact that FPGA resources equal dollars.  Keep your dollar commitment small.  Use the techniques in this post to keep your resource usage to a minimum.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jun 10, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2017/06/10/lost-college-student.html">A College Student's Response to the FPGA Design Process</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>When I wrote the blog article about the FPGA design process, and how it differed between students, experts, and reality, one particular student's experiences were fresh in my mind.  Here, he writes about his experiences from his own perspective.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jun 8, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2017/06/08/simple-wb-master.html">Building a Simple Wishbone Master</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>A discussion of how to build a simple bus master, such as you might wish to use to debug a wishbone-based system</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jun 8, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2017/06/08/simple-scope.html">Building A Simple In-Circuit Logic Analyzer</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Building your own in-circuit logic analyzer is a whole lot easier than it sounds</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jun 6, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/dsp/2017/06/06/simple-interpolator.html">Nearest Neighbor Interpolation</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>A simple presentation of how to handle resampling via a nearest-neightbor interpolation scheme.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jun 5, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2017/06/05/wb-bridge-overview.html">An Overview of a Wishbone-UART Bridge</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>I'd like to describe how to control a wishbone bus from an external command and control port.  It's not that simple.  This article discusses instead how one such approach works, decomposing the parts and pieces of it.  It then outlines what a simplified control port structure might look like.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jun 3, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2017/06/03/building-sidewalks.html">Campus Sidewalks and FPGA Design</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Sometimes you need to build something to fill a gap, before you know what to build.  Here's an example.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jun 2, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2017/06/02/generating-timing.html">Controlling Timing within an FPGA</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Every FPGA design needs to carefully control the timing of events.  Here, we'll explore several ways to control timing within your design.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">Jun 2, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2017/06/02/design-process.html">The Actual FPGA Design Process</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>There seems to be a disconnect between the FPGA design process used by experts, and the students who request help from the online forums.  This post examines that disconnect, pointing out the detail that's often missed.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">May 29, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/zipcpu/2017/05/29/simple-wishbone.html">Building a simple wishbone slave</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Bus slave interaction is actually fairly easy.  Let's walk through an example wishbone bus slave and look at how it works.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">May 29, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/zipcpu/2017/05/29/select-lines.html">Bus Select Lines</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>If you want 8-bit access to a 32-bit bus, you'll need to incorporate the bus select lines into your logic.  See how it's done here.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">May 29, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/digilent/2017/05/29/fft-debugging.html">FFT debugging</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>If you find you need to debug an FFT and that you are struggling to do so, the answer is that you need to go back to the basics of engineering.  Working from the basics, debugging either an FFT or any other block will become straight-forward.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">May 26, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2017/05/26/simpledbg.html">Debugging an FPGA through the serial port--first steps</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>If you have a serial port, how might you use it to get information from your FPGA?  Can you use it to help debug the rest of your design?</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">May 24, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2017/05/24/serial-port.html">That first serial port: Debugging when you are blind</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>A serial port can be a very useful way to get information from an FPGA.  How can you avoid FPGA Hell when you are trying to get that first serial port up and running?</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">May 23, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/zipcpu/2017/05/23/simplebus.html">Building a simple bus</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>For this article, we'll discuss the logic necessary to implement a very simple bus slave.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">May 22, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/digilent/2017/05/22/moving-to-memory.html">Moving to memory</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Blinking LEDs is a fun exercise, but eventually you will need to learn to walk to grow up.  Within FPGA's, that means you'll need to learn how to deal with memory.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">May 22, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2017/05/22/a-vision-for-controlling-fpgas.html">A Vision for Controlling FPGA Logic</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>My approach to controlling and debugging an FPGA seems to be unique among those I share it with.  Here I describe that approach for you, as a vision for where we might go here.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">May 20, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/zipcpu/2017/05/20/which-came-first.html">Which comes first: the CPU or the peripherals?</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Not whether or not the chicken or the egg came first, but in digital design which comes first: the CPU or the peripherals?</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">May 20, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2017/05/20/knight-rider.html">Knight Rider</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Knight Rider's car: KIT's LEDs can be a fun twist on a beginners first FPGA design</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">May 19, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2017/05/19/fpga-hell.html">FPGA Hell</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>FPGA Hell is where your design doesn't work, and you don't know why not.  Here, we'll discuss basic approaches to avoiding FPGA Hell.</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">May 19, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2017/05/19/blinky.html">Blinky</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Your first FPGA design -- blinking an LED</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">May 18, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/digilent/2017/05/18/most-common-digilent-support-requests.html">Most common Digilent FPGA support requests</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>After watching Digilent forum support requests for a year, they start to repeat into these categories</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">May 18, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/digilent/2017/05/18/cannot-be-done.html">Cannot be done</a>
+        </h2>
+	
+	<DIV ID=<post-meta"><P>Never underestimate someone's creativity to make things work outside of spec</P></DIV>
+	
+      </li>
+    
+      <li>
+        <span class="post-meta">May 17, 2017</span>
+
+        <h2>
+          <a class="post-link" href="/blog/2017/05/17/welcome.html">Welcome to the ZipCPU blog!</a>
+        </h2>
+	
+      </li>
+    
+  </ul>
+
+  <p class="rss-subscribe">subscribe <a href="/feed.xml">via RSS</a></p>
+
+</div>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">The ZipCPU by Gisselquist Technology</h2>
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <!-- <li></li> -->
+          <li><a href="mailto:zipcpu@gmail.com">zipcpu@gmail.com</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="soc-medlist">
+          
+          <li>
+            <a href="https://github.com/ZipCPU"><span class="icon icon--github"><svg viewBox="0 0 16 16"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">ZipCPU</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/zipcpu"><span class="icon icon--twitter"><svg viewBox="0 0 16 16"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">@zipcpu</span></a>
+
+          </li>
+          
+          
+          <li><A href="https://www.patreon.com/ZipCPU"><img src="/img/become_a_patron_button.png"></a></li>
+          
+
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>The ZipCPU blog, featuring how to discussions of FPGA and soft-core CPU design.  This site will be focused on Verilog solutions, using exclusively OpenSource IP products for FPGA design.  Particular focus areas include topics often left out of more mainstream FPGA design courses such as how to debug an FPGA design.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>
